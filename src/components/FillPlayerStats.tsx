@@ -53,7 +53,7 @@ const FillPlayerStats: React.FC<FillPlayerStatsProps> = ({
 
   return (
     <div className="FillPlayerStats mt-4">
-      <h4>Fill Player Statistics</h4>
+      <h2>Fill Player Statistics</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formGameId">
           <Form.Label>Game ID</Form.Label>

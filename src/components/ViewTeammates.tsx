@@ -26,10 +26,10 @@ const ViewTeammates: React.FC<PlayerStatViewProps> = ({ team }) => {
     try {
       const playersCollection = collection(db, "Players");
 
-      // Query players where privilege is "Player"
+      // Query players where team matches the selected team
       const playersQuery = query(playersCollection, where("team", "==", team));
 
-      // Listen for changes in the 'players' collection where privilege is "Player"
+      // Listen for changes in the 'players' collection
       const unsubscribe: Unsubscribe = onSnapshot(playersQuery, (snapshot) => {
         const playersList: player[] = [];
 
@@ -42,13 +42,12 @@ const ViewTeammates: React.FC<PlayerStatViewProps> = ({ team }) => {
         setLoading(false);
       });
 
-      // Return unsubscribe function for cleanup
       return unsubscribe;
     } catch (err) {
       console.error("Error fetching players:", err);
       setError("Failed to load players. Please try again.");
       setLoading(false);
-      return undefined; // Return undefined if there's an error
+      return undefined;
     }
   };
 
@@ -70,7 +69,6 @@ const ViewTeammates: React.FC<PlayerStatViewProps> = ({ team }) => {
   useEffect(() => {
     const unsubscribe = fetchPlayers();
 
-    // Ensure unsubscribe is defined before calling it
     return () => {
       if (unsubscribe) {
         unsubscribe();
@@ -88,35 +86,38 @@ const ViewTeammates: React.FC<PlayerStatViewProps> = ({ team }) => {
   }
 
   return (
-    <div className="container PlayerDetails" style={{ maxWidth: "100%" }}>
+    <div className="container" style={{ maxWidth: "100%" }}>
       <h2 className="mb-3">Team {team} Player List</h2>
 
       {error && <div className="alert alert-danger">{error}</div>}
 
-      <Table hover responsive="md" style={{ maxWidth: "80%", margin: "auto" }}>
-        <thead>
-          <tr className="ViewPlayersHeader">
-            <th onClick={() => handleSort("firstname")}>Full Name</th>
-            <th onClick={() => handleSort("team")}>Team</th>
-            <th onClick={() => handleSort("position")}>Pos</th>
-          </tr>
-        </thead>
-        <tbody>
-          {players.map((player, index) => (
-            <tr
-              key={index}
-              style={{ cursor: "pointer" }}
-              className="ViewPlayersRow"
-            >
-              <td>
-                {player.firstname} {player.lastname}
-              </td>
-              <td>{player.team}</td>
-              <td>{player.position}</td>
+      {/* Scrollable Table with Max Height */}
+      <div style={{ maxHeight: "270px", overflowY: "auto" }}>
+        <Table hover responsive="md" style={{ width: "100%" }}>
+          <thead>
+            <tr className="ViewPlayersHeader">
+              <th onClick={() => handleSort("firstname")}>Full Name</th>
+              <th onClick={() => handleSort("team")}>Team</th>
+              <th onClick={() => handleSort("position")}>Pos</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {players.map((player, index) => (
+              <tr
+                key={index}
+                style={{ cursor: "pointer" }}
+                className="ViewPlayersRow"
+              >
+                <td>
+                  {player.firstname} {player.lastname}
+                </td>
+                <td>{player.team}</td>
+                <td>{player.position}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
 };

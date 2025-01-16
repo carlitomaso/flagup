@@ -11,7 +11,7 @@ const GamesView = () => {
       <Container>
         <Row>
           <Col xs={6} md={8}>
-            <h4 style={{ paddingLeft: "10%" }}>Games</h4>
+            <h2 style={{ paddingLeft: "10%" }}>Games</h2>
           </Col>
           <Col xs={6} md={4}>
             <Button variant="secondary" onClick={() => setShowNewGame(true)}>

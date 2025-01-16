@@ -1,8 +1,8 @@
-import React from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import PlayerStatView from "./PlayerStatView";
 import ViewTeammates from "./ViewTeammates";
+import ViewTeamGames from "./ViewTeamGames";
 
 const KeyOrder = ["playercode", "firstname", "lastname", "team", "position"];
 
@@ -71,6 +71,7 @@ const PlayerView = () => {
 
           <Col xs={12} sm={12} md={12} lg={6}>
             <ViewTeammates team={teamNumber} />
+            <ViewTeamGames team={teamNumber} />
           </Col>
         </Row>
       </Container>
