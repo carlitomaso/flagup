@@ -1,8 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import FlagUpView from "../components/FlagUpView";
 
 const UserProfile = () => {
-  const { userId } = useParams();
-  return <h1>User Profile for User ID: {userId}</h1>;
+  const location = useLocation();
+
+  const playerDetails = location.state?.playerDetails;
+  console.log(playerDetails);
+  return (
+    <>
+      {playerDetails["privilege"] === "FlagUp" ? <FlagUpView /> : <p>Player</p>}
+    </>
+  );
 };
 
 export default UserProfile;

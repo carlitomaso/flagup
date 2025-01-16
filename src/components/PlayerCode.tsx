@@ -26,9 +26,11 @@ const PlayerCode = () => {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        // If querySnapshot is not empty, it means the playerCode exists
-        console.log("Player found!");
-        navigate("/user/" + playerCode);
+        const playerData = querySnapshot.docs[0].data(); // Extracts the document data
+
+        navigate(`/user/${playerCode}`, {
+          state: { playerDetails: playerData },
+        });
       } else {
         // Player code does not exist
         console.log("No such player!");

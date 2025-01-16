@@ -94,3 +94,13 @@ button:focus-visible {
   max-height: 80%;
   object-fit: contain;
 }
+
+.FlagUpContainer {
+  max-width: 100%;
+  width: 1500px;
+  height: 90vh;
+}
+
+label {
+  text-align: left !important;
+}
