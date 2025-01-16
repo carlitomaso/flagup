@@ -25,3 +25,10 @@ export interface statistic {
   team: team;
   amount: number;
 }
+
+export interface game {
+  gameid: string;
+  teams: [team, team];
+  winner: team | null;
+  startTime: Date;
+}
