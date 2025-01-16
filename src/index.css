@@ -116,7 +116,7 @@ button:focus-visible {
 }
 
 .ViewPlayersHeader th:hover {
-  background-color: rgb(34, 34, 85);
+  background-color: #991e24bc;
   color: white;
 }
 
@@ -142,4 +142,13 @@ button:focus-visible {
   padding: 30px 0;
   border-radius: 25px;
   margin: auto;
+}
+
+.LightShadow {
+  box-shadow: 2px 2px 4px rgba(229, 216, 80, 0.353); /* Adjust opacity for a lighter shadow */
+  transition: box-shadow 0.3s ease; /* Optional: Add smooth hover transition */
+}
+
+.LightShadow:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Slightly enhance shadow on hover */
 }

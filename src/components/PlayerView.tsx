@@ -34,7 +34,7 @@ const PlayerView = () => {
         <Row>
           <Col xs={12} sm={12} md={12} lg={6} style={{ marginBottom: "80px" }}>
             <div>
-              <div className="PlayerDetails">
+              <div className="PlayerDetails LightShadow">
                 <h3 className="mb-3">Player Details</h3>
                 <Container>
                   {Object.entries(playerDetails)
@@ -60,7 +60,7 @@ const PlayerView = () => {
                 </Container>
               </div>
               <div
-                className="PlayerDetails PlayerStats"
+                className="PlayerDetails PlayerStats LightShadow"
                 style={{ marginTop: "80px" }}
               >
                 <h3 className="mb-3">Player Stats</h3>
