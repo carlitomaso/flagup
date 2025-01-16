@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Form,
   Button,
@@ -34,9 +34,20 @@ const FillPlayerStats: React.FC<FillPlayerStatsProps> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(gameId);
+
+    if (amount == 0) {
+      setError("Amount must be greater than 0");
+      setSuccess(null);
+      return;
+    } else if (gameId == "" || playerCode == "") {
+      setError("Player Field or Game ID Field is Empty");
+      setSuccess(null);
+      return;
+    }
+
     setLoading(true);
     setError(null);
-    setSuccess(null);
 
     try {
       // Prepare the statistic entry
@@ -62,6 +73,10 @@ const FillPlayerStats: React.FC<FillPlayerStatsProps> = ({
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (gameId != playgameid) setGameId(playgameid);
+  }, [playgameid]);
 
   return (
     <div className="FillPlayerStats mt-4">
