@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import FlagUpView from "../components/FlagUpView";
+import PlayerView from "../components/PlayerView";
 
 const UserProfile = () => {
   const location = useLocation();
@@ -8,7 +9,11 @@ const UserProfile = () => {
   console.log(playerDetails);
   return (
     <>
-      {playerDetails["privilege"] === "FlagUp" ? <FlagUpView /> : <p>Player</p>}
+      {playerDetails["privilege"] === "FlagUp" ? (
+        <FlagUpView />
+      ) : (
+        <PlayerView />
+      )}
     </>
   );
 };

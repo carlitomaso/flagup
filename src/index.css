@@ -121,3 +121,11 @@ button:focus-visible {
 .ViewPlayersRow td{
   border: 0px;
 }
+
+.PlayerDetails {
+  background-color: #991e24bc;
+  max-width: 500px;
+  padding: 30px 0;
+  border-radius: 25px;
+  margin: auto;
+}

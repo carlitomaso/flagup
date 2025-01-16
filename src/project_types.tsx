@@ -10,3 +10,18 @@ export interface player {
   privilege: privilege;
   position: position;
 }
+
+export type stats =
+  | "Touchdown"
+  | "TouchdownPass"
+  | "FlagPull"
+  | "Interception"
+  | "Block"
+  | "Catch";
+
+export interface statistic {
+  gameid: string;
+  playercode: string;
+  team: team;
+  amount: number;
+}
