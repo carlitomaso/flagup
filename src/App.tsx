@@ -24,7 +24,7 @@ function App() {
                 <>
                   <NavLink to={"/"}>
                     <div className="HomeButton">
-                      <img src="/flaglogo.png" />
+                      <img src="/flaglogo.png" className="jitter-on-hover" />
                     </div>
                   </NavLink>
                   <UserProfile />
@@ -37,7 +37,7 @@ function App() {
                 <>
                   <NavLink to={"/"}>
                     <div className="HomeButton">
-                      <img src="/flaglogo.png" />
+                      <img src="/flaglogo.png" className="jitter-on-hover" />
                     </div>
                   </NavLink>
                   <NotFound />
