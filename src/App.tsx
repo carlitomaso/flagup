@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
+import NotFound from "./pages/NotFound";
 
 // Component to display the user profile
 
@@ -27,6 +28,19 @@ function App() {
                     </div>
                   </NavLink>
                   <UserProfile />
+                </>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <>
+                  <NavLink to={"/"}>
+                    <div className="HomeButton">
+                      <img src="/flaglogo.png" />
+                    </div>
+                  </NavLink>
+                  <NotFound />
                 </>
               }
             />
