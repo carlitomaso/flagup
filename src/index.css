@@ -122,6 +122,10 @@ button:focus-visible {
   border: 0px;
 }
 
+.ViewPlayersTable {
+  overflow-y: auto;  /* Enable vertical scrolling */
+}
+
 .PlayerDetails {
   background-color: #991e24bc;
   max-width: 500px;

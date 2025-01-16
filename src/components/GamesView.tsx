@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import AddGame from "./AddGame";
+import GameTableView from "./GameTableView";
 
 const GamesView = () => {
   const [showNewGame, setShowNewGame] = useState(false);
@@ -16,6 +17,11 @@ const GamesView = () => {
             <Button variant="secondary" onClick={() => setShowNewGame(true)}>
               New Game
             </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <GameTableView />
           </Col>
         </Row>
       </Container>

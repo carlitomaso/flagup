@@ -139,48 +139,51 @@ const ViewPlayers = () => {
 
   return (
     <div className="container mt-5">
-      <h2>Players List</h2>
+      <h2 className="mb-3">Players List</h2>
 
       {error && <div className="alert alert-danger">{error}</div>}
-
-      <Table hover responsive="md">
-        <thead>
-          <tr className="ViewPlayersHeader">
-            <th onClick={() => handleSort("firstname")}>Full Name</th>
-            <th onClick={() => handleSort("team")}>Team</th>
-            <th onClick={() => handleSort("position")}></th>
-            <th onClick={() => handleSort("playercode")}>Player Code</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {players.map((player, index) => (
-            <tr
-              key={index}
-              style={{ cursor: "pointer" }}
-              className="ViewPlayersRow"
-            >
-              <td className={getRowColor(player.team)}>
-                {player.firstname} {player.lastname}
-              </td>
-              <td className={getRowColor(player.team)}>{player.team}</td>
-              <td className={getRowColor(player.team)}>{player.position}</td>
-              <td className={getRowColor(player.team)}>{player.playercode}</td>
-              <td className={getRowColor(player.team)}>
-                <a
-                  onClick={() => {
-                    setPlayerToDelete(player);
-                    setShowModal(true);
-                  }}
-                  className="PlayerDeleteButton"
-                >
-                  x
-                </a>
-              </td>
+      <div style={{ maxHeight: "542px", overflowY: "auto" }}>
+        <Table hover responsive="md" className="ViewPlayersTable">
+          <thead>
+            <tr className="ViewPlayersHeader">
+              <th onClick={() => handleSort("firstname")}>Full Name</th>
+              <th onClick={() => handleSort("team")}>Team</th>
+              <th onClick={() => handleSort("position")}></th>
+              <th onClick={() => handleSort("playercode")}>Player Code</th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {players.map((player, index) => (
+              <tr
+                key={index}
+                style={{ cursor: "pointer" }}
+                className="ViewPlayersRow"
+              >
+                <td className={getRowColor(player.team)}>
+                  {player.firstname} {player.lastname}
+                </td>
+                <td className={getRowColor(player.team)}>{player.team}</td>
+                <td className={getRowColor(player.team)}>{player.position}</td>
+                <td className={getRowColor(player.team)}>
+                  {player.playercode}
+                </td>
+                <td className={getRowColor(player.team)}>
+                  <a
+                    onClick={() => {
+                      setPlayerToDelete(player);
+                      setShowModal(true);
+                    }}
+                    className="PlayerDeleteButton"
+                  >
+                    x
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
 
       {/* Delete Confirmation Modal */}
       <Modal

@@ -26,11 +26,16 @@ const AddGame = () => {
       return;
     }
 
+    if (team1 == team2) {
+      alert("Teams should not play against themselves");
+      return;
+    }
+
     const gameDetails: game = {
       gameid: gameId,
       teams: [team1, team2],
       winner: null, // Always null
-      startTime: new Date(`${"2025-01-01"}T${startTime}`), // Fixed date, time is taken from the input
+      startTime: new Date(`${"2025-01-20"}T${startTime}`), // Fixed date, time is taken from the input
     };
 
     try {
@@ -49,7 +54,6 @@ const AddGame = () => {
 
   return (
     <Container className="">
-      <h2>Add Game</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formGameId">
           <Form.Label>Game ID</Form.Label>
@@ -62,7 +66,7 @@ const AddGame = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formTeam1">
-          <Form.Label>Team 1</Form.Label>
+          <Form.Label>First Team</Form.Label>
           <Form.Select
             value={team1}
             onChange={(e) => setTeam1(parseInt(e.target.value))}
@@ -75,7 +79,7 @@ const AddGame = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formTeam2">
-          <Form.Label>Team 2</Form.Label>
+          <Form.Label>Second Team</Form.Label>
           <Form.Select
             value={team2}
             onChange={(e) => setTeam2(parseInt(e.target.value))}
