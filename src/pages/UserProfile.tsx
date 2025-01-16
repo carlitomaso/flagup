@@ -6,7 +6,6 @@ const UserProfile = () => {
   const location = useLocation();
 
   const playerDetails = location.state?.playerDetails;
-  console.log(playerDetails);
   return (
     <>
       {playerDetails["privilege"] === "FlagUp" ? (

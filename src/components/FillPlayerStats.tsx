@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Form, Button, Alert, Spinner } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Alert,
+  Spinner,
+  Container,
+  Row,
+  Col,
+} from "react-bootstrap";
 import { db } from "../firebase-config"; // Ensure this is your Firebase configuration file
 import { collection, addDoc } from "firebase/firestore";
 import { stats, statistic, team } from "../project_types";
@@ -7,11 +15,15 @@ import { stats, statistic, team } from "../project_types";
 interface FillPlayerStatsProps {
   playerCode: string;
   playerTeam: team;
+  playerName: string;
+  playgameid: string;
 }
 
 const FillPlayerStats: React.FC<FillPlayerStatsProps> = ({
   playerCode,
   playerTeam,
+  playerName,
+  playgameid,
 }) => {
   const [gameId, setGameId] = useState<string>("");
   const [statType, setStatType] = useState<stats>("Touchdown");
@@ -53,14 +65,22 @@ const FillPlayerStats: React.FC<FillPlayerStatsProps> = ({
 
   return (
     <div className="FillPlayerStats mt-4">
-      <h2>Fill Player Statistics</h2>
+      <h2 className="mb-3">Fill Player Statistics</h2>
+      <Container className="mb-3">
+        <Row>
+          <Col>Code</Col>
+          <Col>{playerCode}</Col>
+          <Col>Name</Col>
+          <Col>{playerName}</Col>
+        </Row>
+      </Container>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formGameId">
           <Form.Label>Game ID</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Game ID"
-            value={gameId}
+            placeholder={playgameid == "" ? "Enter Game ID" : playgameid}
+            value={playgameid}
             onChange={(e) => setGameId(e.target.value)}
             required
           />

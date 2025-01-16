@@ -13,8 +13,9 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { game } from "./AddGame"; // Import your game interface
+import { GamesViewProps } from "./GamesView";
 
-const GameTableView = () => {
+const GameTableView: React.FC<GamesViewProps> = ({ setGameId }) => {
   const [games, setGames] = useState<game[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -112,7 +113,11 @@ const GameTableView = () => {
           </thead>
           <tbody>
             {games.map((game) => (
-              <tr key={game.gameid}>
+              <tr
+                key={game.gameid}
+                style={{ cursor: "pointer" }}
+                onClick={() => setGameId(game.gameid)}
+              >
                 <td>{game.gameid}</td>
                 <td>{`Team ${game.teams[0]} vs Team ${game.teams[1]}`}</td>
                 <td>

@@ -3,7 +3,11 @@ import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import AddGame from "./AddGame";
 import GameTableView from "./GameTableView";
 
-const GamesView = () => {
+export interface GamesViewProps {
+  setGameId: (newvalue: string) => void;
+}
+
+const GamesView: React.FC<GamesViewProps> = ({ setGameId }) => {
   const [showNewGame, setShowNewGame] = useState(false);
 
   return (
@@ -21,7 +25,7 @@ const GamesView = () => {
         </Row>
         <Row>
           <Col>
-            <GameTableView />
+            <GameTableView setGameId={setGameId} />
           </Col>
         </Row>
       </Container>

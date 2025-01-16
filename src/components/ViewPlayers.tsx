@@ -14,7 +14,17 @@ import {
 import { Table, Spinner, Button, Modal } from "react-bootstrap";
 import { player } from "../project_types";
 
-const ViewPlayers = () => {
+interface ViewPlayerProps {
+  setPlayerCode: (newvalue: string) => void;
+  setPlayerTeam: (newvalue: number) => void;
+  setPlayerName: (newvalue: string) => void;
+}
+
+const ViewPlayers: React.FC<ViewPlayerProps> = ({
+  setPlayerCode,
+  setPlayerTeam,
+  setPlayerName,
+}) => {
   const [players, setPlayers] = useState<player[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -159,6 +169,11 @@ const ViewPlayers = () => {
                 key={index}
                 style={{ cursor: "pointer" }}
                 className="ViewPlayersRow"
+                onClick={() => {
+                  setPlayerName(player.firstname + " " + player.lastname);
+                  setPlayerCode(player.playercode);
+                  setPlayerTeam(player.team);
+                }}
               >
                 <td className={getRowColor(player.team)}>
                   {player.firstname} {player.lastname}
