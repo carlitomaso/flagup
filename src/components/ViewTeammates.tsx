@@ -87,7 +87,7 @@ const ViewTeammates: React.FC<PlayerStatViewProps> = ({ team }) => {
 
   return (
     <div className="container" style={{ maxWidth: "100%" }}>
-      <h2 className="mb-3">Team {team} Player List</h2>
+      <h2 className="mb-3">Team {team} Roster</h2>
 
       {error && <div className="alert alert-danger">{error}</div>}
 

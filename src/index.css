@@ -95,6 +95,16 @@ button:focus-visible {
   object-fit: contain;
 }
 
+.HomeButton {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+}
+
+.HomeButton img {
+  height: 50px;
+}
+
 .FlagUpContainer {
   max-width: 1500px;
   width: 100%;
