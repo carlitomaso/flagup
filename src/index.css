@@ -96,11 +96,28 @@ button:focus-visible {
 }
 
 .FlagUpContainer {
-  max-width: 100%;
-  width: 1500px;
+  max-width: 1500px;
+  width: 100%;
   height: 90vh;
 }
 
-label {
-  text-align: left !important;
+.ViewPlayersHeader th {
+  cursor: pointer;
+}
+
+.ViewPlayersHeader th:hover {
+  background-color: rgb(34, 34, 85);
+  color: white;
+}
+
+.PlayerDeleteButton {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: red;
+  color: black;
+}
+
+.ViewPlayersRow td{
+  border: 0px;
 }

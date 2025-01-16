@@ -4,15 +4,8 @@ import PlayerCode from "../components/PlayerCode";
 const Home = () => {
   return (
     <>
-      <CenteredImage
-        src="public\flaglogo.png"
-        alt="flag up logo"
-        duration={1000}
-      />
-      <img
-        src="public\flaglogo.png"
-        style={{ height: "300px", width: "auto" }}
-      />
+      <CenteredImage src="flaglogo.png" alt="flag up logo" duration={1000} />
+      <img src="flaglogo.png" style={{ height: "300px", width: "auto" }} />
       <PlayerCode />
     </>
   );

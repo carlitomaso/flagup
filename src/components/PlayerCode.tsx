@@ -44,12 +44,14 @@ const PlayerCode = () => {
 
   return (
     <>
-      <FormControl
-        placeholder="Enter Player Code: "
-        className="mb-3"
-        onChange={(e) => setPlayerCode(e.target.value)}
-        onKeyDown={handleEnter}
-      />
+      <div style={{ maxWidth: "400px", margin: "auto" }}>
+        <FormControl
+          placeholder="Enter Player Code: "
+          className="mb-3"
+          onChange={(e) => setPlayerCode(e.target.value)}
+          onKeyDown={handleEnter}
+        />
+      </div>
       <Button variant="secondary" onClick={checkPlayerCode}>
         Enter
       </Button>

@@ -2,41 +2,33 @@ import React, { useState } from "react";
 import { Button, Form, FormControl, Alert } from "react-bootstrap";
 import { db } from "../firebase-config"; // Ensure this is your Firebase configuration file
 import { collection, addDoc } from "firebase/firestore";
-
-export type privilege = "Player" | "FlagUp";
-export type team = number;
-
-export interface player {
-  playercode: string;
-  firstname: string;
-  lastname: string;
-  team: team;
-  privilege: privilege;
-}
+import { team, position } from "../project_types";
 
 const AddPlayer = () => {
   const [playerCode, setPlayerCode] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [team, setTeam] = useState<team>(1); // Default to team 1
+  const [team, setTeam] = useState<team | 0>(0);
+  const [position, setPosition] = useState<position | "">(""); // Default to QB
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!playerCode || !firstName || !lastName) {
+    if (!playerCode || !firstName || !lastName || position == "" || team == 0) {
       setError("All fields are required.");
       setSuccess(false);
       return;
     }
 
-    const newPlayer: player = {
+    const newPlayer = {
       playercode: playerCode,
       firstname: firstName,
       lastname: lastName,
       team: team,
       privilege: "Player", // Privilege is always Player
+      position: position,
     };
 
     try {
@@ -47,7 +39,8 @@ const AddPlayer = () => {
       setPlayerCode("");
       setFirstName("");
       setLastName("");
-      setTeam(1);
+      setTeam(0);
+      setPosition(""); // Reset position to default
     } catch (err) {
       console.error("Error adding player:", err);
       setError("Failed to add player. Please try again.");
@@ -95,10 +88,24 @@ const AddPlayer = () => {
             value={team}
             onChange={(e) => setTeam(parseInt(e.target.value))}
           >
+            <option value={0}>Select Team</option>
             <option value={1}>Team 1</option>
             <option value={2}>Team 2</option>
             <option value={3}>Team 3</option>
             <option value={4}>Team 4</option>
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formPosition">
+          <Form.Label className="text-start">Select Position</Form.Label>
+          <Form.Select
+            value={position}
+            onChange={(e) => setPosition(e.target.value as position)} // Ensure type safety
+          >
+            <option value="">Select Position</option>
+            <option value="QB">Quarterback (QB)</option>
+            <option value="WR">Wide Receiver (WR)</option>
+            <option value="DB">Defensive Back (DB)</option>
           </Form.Select>
         </Form.Group>
 
