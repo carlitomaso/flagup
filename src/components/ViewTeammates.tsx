@@ -92,7 +92,7 @@ const ViewTeammates: React.FC<PlayerStatViewProps> = ({ team }) => {
       {error && <div className="alert alert-danger">{error}</div>}
 
       {/* Scrollable Table with Max Height */}
-      <div style={{ maxHeight: "270px", overflowY: "auto" }}>
+      <div style={{ maxHeight: "540px", overflowY: "auto" }}>
         <Table hover responsive="md" style={{ width: "100%" }}>
           <thead>
             <tr className="ViewPlayersHeader">

@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import PlayerStatView from "./PlayerStatView";
+// import PlayerStatView from "./PlayerStatView";
 import ViewTeammates from "./ViewTeammates";
 import ViewTeamGames from "./ViewTeamGames";
 
@@ -24,7 +24,7 @@ const PlayerView = () => {
 
   const playerDetails = location.state?.playerDetails;
 
-  const playerCode = String(playerDetails["playercode"]);
+  // const playerCode = String(playerDetails["playercode"]);
   const teamNumber = playerDetails["team"];
   console.log(teamNumber);
 
@@ -59,19 +59,21 @@ const PlayerView = () => {
                     })}
                 </Container>
               </div>
-              <div
+              <div className="PlayerDetails LightShadow mt-3">
+                <ViewTeamGames team={teamNumber} />
+              </div>
+              {/* <div
                 className="PlayerDetails PlayerStats LightShadow"
                 style={{ marginTop: "80px" }}
               >
                 <h3 className="mb-3">Player Stats</h3>
                 <PlayerStatView playerCode={playerCode} />
-              </div>
+              </div> */}
             </div>
           </Col>
 
           <Col xs={12} sm={12} md={12} lg={6}>
             <ViewTeammates team={teamNumber} />
-            <ViewTeamGames team={teamNumber} />
           </Col>
         </Row>
       </Container>
