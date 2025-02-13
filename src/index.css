@@ -1,171 +1,223 @@
-:root body{
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #02340e;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root body {
+  background-color: #cfa4c2;
+  overflow: hidden
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; 
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root body{
-    color: #000305;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-.FlagLogoDiv {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.pin-display {
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.pin-dot {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #666;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.pin-dot.filled {
+  background-color: #666;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  /* padding: 20px; */
   width: 100%;
-  height: 100%;
-  z-index: 1000;
-  background-color: #02340e; /* Optional overlay */
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 1s ease, visibility 1s ease;
 }
 
-.FlagLogoDiv.hidden {
+.key {
+  aspect-ratio: 1;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: black;
+  width: 70px;
+  height: 70px;
+}
+
+#backspace.key {
+  padding: 0;
+}
+
+.key:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.key:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.message {
+  text-align: center;
+  height: 20px;
+  margin-top: 20px;
+  color: #666;
+}
+
+.fade-out {
   opacity: 0;
-  visibility: hidden;
+  transition: opacity 1.5s ease-out;
 }
 
-.FlagLogo {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInAnimation 1.5s ease-in-out forwards;
 }
 
-.HomeButton {
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root{
+  --primary: #fff;
+  --bg-color: rgb(5, 53, 61);
+  --bg-envelope-color: #f5edd1;
+  --envelope-tab: #ecdeb8;
+  --envelope-cover: #e6cfa7;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --txt-color: #444;
+  --heart-color: rgba(252, 8, 232, 0.712);
+}
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container2 {
+  opacity: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.container2 > .envelope-wrapper {
+  background: var(--bg-envelope-color);
+  box-shadow: 0 0 40px var(--shadow-color);
+}
+.envelope-wrapper > .envelope {
+  position: relative;
+  width: 300px;
+  height: 230px;
+}
+.envelope-wrapper > .envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 130px solid var(--envelope-tab);
+  border-right: 150px solid transparent;
+  border-left: 150px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+  text-align: unset;
+}
+.envelope-wrapper > .envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  border-top: 130px solid transparent;
+  border-right: 150px solid var(--envelope-cover);
+  border-bottom: 100px solid var(--envelope-cover);
+  border-left: 150px solid var(--envelope-cover);
+  text-align: unset;
+}
+.envelope > .letter {
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  width: 54%;
+  height: 80%;
+  background: var(--primary);
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px var(--shadow-color);
+  padding: 20px 10px;
+}
+
+.envelope > .letter > .text {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--txt-color);
+  text-align: left;
+  font-size: 10px;
+}
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  cursor: pointer;
+}
+.heart:before, 
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+.heart:before {
+  top: -7.5px;
+}
+.heart:after {
+  right: 7.5px;
+}
+.flap > .envelope:before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+.flap > .envelope > .letter {
+  bottom: 130px;
+  transform: scale(1.5);
+  transition-delay: 1s;
+}
+.flap > .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+.back {
   position: fixed;
   top: 5px;
-  left: 5px;
-}
-
-.HomeButton img {
-  height: 50px;
-}
-
-.FlagUpContainer {
-  max-width: 1500px;
-  width: 100%;
-  height: 90vh;
-}
-
-.ViewPlayersHeader th {
+  left: 15px;
+  font-size: 40px;
   cursor: pointer;
-}
-
-.ViewPlayersHeader th:hover {
-  background-color: #991e24bc;
-  color: white;
-}
-
-.PlayerDeleteButton {
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 10px;
-  background-color: red;
-  color: black;
-}
-
-.ViewPlayersRow td{
-  border: 0px;
-}
-
-.ViewPlayersTable {
-  overflow-y: auto;  /* Enable vertical scrolling */
-}
-
-.PlayerDetails {
-  background-color: #991e24bc;
-  max-width: 500px;
-  padding: 30px 0;
-  border-radius: 25px;
-  margin: auto;
-}
-
-.LightShadow {
-  box-shadow: 2px 2px 4px rgba(229, 216, 80, 0.353); /* Adjust opacity for a lighter shadow */
-  transition: box-shadow 0.3s ease; /* Optional: Add smooth hover transition */
-}
-
-.LightShadow:hover {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Slightly enhance shadow on hover */
-}
-
-@keyframes jitter {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  50% { transform: translateX(2px); }
-  75% { transform: translateX(-1px); }
-  100% { transform: translateX(0); }
-}
-
-.jitter-on-hover {
-  display: inline-block; /* Ensure it works on inline elements like images */
-  transition: transform 0.2s ease; /* Smooth transition when hover ends */
-}
-
-.jitter-on-hover:hover {
-  animation: jitter 0.3s ease-in-out; /* Adjust duration and easing as needed */
 }

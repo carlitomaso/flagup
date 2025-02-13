@@ -8,6 +8,7 @@ import {
 import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
 import NotFound from "./pages/NotFound";
+import Cat from "./pages/Cat";
 
 // Component to display the user profile
 
@@ -18,6 +19,7 @@ function App() {
         <div>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/thebest" element={<Cat />} />
             <Route
               path="/user/:userId"
               element={
